@@ -1,0 +1,1487 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Srikrishna Variety Stores - Premium Stationery & Grocery Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/feather-icons"></script>
+    <style>
+        /* Base responsive styles */
+        * {
+            box-sizing: border-box;
+        }
+        
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .hero-gradient {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), 
+                url('./hero-background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-gradient {
+                background-attachment: scroll;
+                min-height: 80vh;
+            }
+        }
+
+        .card-hover {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .navbar-scroll {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.95);
+        }
+
+        .star-filled {
+            color: #fbbf24;
+        }
+
+        .star-empty {
+            color: #d1d5db;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .icon-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0px);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .glow-effect {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glow-effect::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+            opacity: 0;
+        }
+
+        .glow-effect:hover::before {
+            animation: shine 0.8s ease-in-out;
+        }
+
+        @keyframes shine {
+            0% {
+                transform: translateX(-100%) translateY(-100%) rotate(45deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(100%) translateY(100%) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .pulse-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            animation: pulse-ring 2s infinite;
+            opacity: 0;
+        }
+
+        @keyframes pulse-ring {
+            0% {
+                transform: translate(-50%, -50%) scale(0.8);
+                opacity: 1;
+            }
+            100% {
+                transform: translate(-50%, -50%) scale(1.4);
+                opacity: 0;
+            }
+        }
+
+        .category-card {
+            position: relative;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 0.5rem;
+            padding: 2px;
+            background: linear-gradient(135deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            -webkit-mask-composite: exclude;
+            mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+            mask-composite: exclude;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
+        }
+
+        .section-bg {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            position: relative;
+        }
+
+        .section-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                radial-gradient(circle at 25% 25%, rgba(102, 126, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(118, 75, 162, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 1rem;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 1px solid #e5e7eb;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .product-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.05);
+        }
+
+        .price-tag {
+            background: linear-gradient(45deg, #10b981, #059669);
+            color: white;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-weight: 600;
+            font-size: 0.875rem;
+        }
+
+        .add-to-cart-btn {
+            background: linear-gradient(45deg, #3b82f6, #1d4ed8);
+            transition: all 0.3s ease;
+        }
+
+        .add-to-cart-btn:hover {
+            background: linear-gradient(45deg, #1d4ed8, #1e40af);
+            transform: translateY(-1px);
+        }
+
+        .breadcrumb {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 24px;
+            font-size: 14px;
+            color: #6b7280;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive Typography */
+        html {
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            html {
+                font-size: 14px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            html {
+                font-size: 12px;
+            }
+        }
+        
+        /* Responsive Navigation */
+        .nav-container {
+            max-width: 100%;
+            padding: 0 1rem;
+        }
+        
+        @media (min-width: 1024px) {
+            .nav-container {
+                padding: 0 2rem;
+            }
+        }
+        
+        /* Mobile-first responsive utilities */
+        .mobile-hidden {
+            display: none;
+        }
+        
+        .desktop-hidden {
+            display: block;
+        }
+        
+        @media (min-width: 768px) {
+            .mobile-hidden {
+                display: block;
+            }
+            
+            .desktop-hidden {
+                display: none;
+            }
+        }
+        
+        /* Touch-friendly button sizes */
+        button, 
+        .btn {
+            min-height: 44px;
+            min-width: 44px;
+        }
+        
+        /* Responsive grid adjustments */
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        @media (max-width: 640px) {
+            .responsive-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+        }
+        
+        /* Map responsiveness */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 0;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+    </style>
+</head>
+
+<body class="font-sans">
+    <!-- Navigation -->
+    <nav class="fixed w-full top-0 z-50 navbar-scroll border-b border-gray-200 bg-white">
+        <div class="nav-container mx-auto">
+            <div class="flex justify-between items-center h-16 md:h-20">
+                <div class="flex items-center">
+                    <img src="./skv.png" alt="Srikrishna Variety Stores Logo" class="h-12 md:h-16 w-auto object-contain">
+                </div>
+                <div class="mobile-hidden">
+                    <div class="flex flex-col md:flex-row md:items-baseline md:space-x-4 space-y-2 md:space-y-0">
+                        <a href="#home" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
+                        <a href="#about" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
+                        <a href="#products" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Products</a>
+                        <a href="#gallery" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Gallery</a>
+                        <a href="#reviews" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Reviews</a>
+                        <a href="#contact" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
+                        <a href="#location" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Location</a>
+                    </div>
+                </div>
+                <div class="desktop-hidden">
+                    <button id="mobile-menu-button" class="text-gray-900 hover:text-indigo-600 focus:outline-none p-2">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="desktop-hidden hidden bg-white border-t border-gray-200">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Home</a>
+                <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">About</a>
+                <a href="#products" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Products</a>
+                <a href="#gallery" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Gallery</a>
+                <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Reviews</a>
+                <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Contact</a>
+                <a href="#location" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Location</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-gradient px-4">
+        <div class="max-w-7xl mx-auto text-center text-white w-full">
+            <div class="pt-16 md:pt-20 pb-12 md:pb-16">
+                <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Premium Stationery for Every Need</h1>
+                <p class="text-lg sm:text-xl md:text-2xl mb-6 md:mb-8 max-w-3xl mx-auto px-4">Discover our extensive collection of high-quality pens, notebooks, art supplies, and office essentials.</p>
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <button class="bg-white text-indigo-600 px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-gray-100 transition-colors inline-flex items-center justify-center min-h-[44px]">
+                        <i data-feather="shopping-cart" class="h-5 w-5 mr-2"></i>
+                        Shop Now
+                    </button>
+                    <button class="border-2 border-white text-white px-6 sm:px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-indigo-600 transition-colors inline-flex items-center justify-center min-h-[44px]">
+                        <i data-feather="map-pin" class="h-5 w-5 mr-2"></i>
+                        Visit Store
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-12 md:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">About Srikrishna Variety Stores</h2>
+                <p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Your trusted partner for premium stationery and daily essentials since 2007</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div>
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Our Story</h3>
+                    <p class="text-gray-600 mb-4 md:mb-6">Our journey began with a simple idea to create a place where people can find all their everyday essentials in one stop. From crunchy chips and biscuits to fresh groceries, notebooks and more, we wanted to bring together the products that make daily life easier and happier.</p>
+                    <p class="text-gray-600 mb-4 md:mb-6">What started as a small shop with a few shelves has now grown into a trusted store for the community. We believe in quality, affordability, and friendly service, making sure every customer feels at home when they walk through our doors.</p>
+                    <p class="text-gray-600 mb-6 md:mb-8">From students preparing for exams to professionals crafting important documents, we provide the finest stationery items that make every writing experience exceptional.</p>
+                    <div class="grid grid-cols-2 gap-4 md:gap-6">
+                        <div class="text-center">
+                            <div class="bg-indigo-100 rounded-full p-3 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-2 md:mb-3">
+                                <i data-feather="award" class="h-6 w-6 md:h-8 md:w-8 text-indigo-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">14+ Years</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Experience</p>
+                        </div>
+                        <div class="text-center">
+                            <div class="bg-indigo-100 rounded-full p-3 w-12 h-12 md:w-16 md:h-16 flex items-center justify-center mx-auto mb-2 md:mb-3">
+                                <i data-feather="users" class="h-6 w-6 md:h-8 md:w-8 text-indigo-600"></i>
+                            </div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">10,000+</h4>
+                            <p class="text-gray-600 text-xs md:text-sm">Happy Customers</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-lg shadow-lg">
+                    <h3 class="text-xl sm:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Why Choose Us?</h3>
+                    <div class="space-y-3 md:space-y-4">
+                        <div class="flex items-start">
+                            <i data-feather="check-circle" class="h-5 w-5 md:h-6 md:w-6 text-green-500 mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Premium Quality</h4>
+                                <p class="text-gray-600 text-xs md:text-sm">Only the finest materials and brands</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="check-circle" class="h-5 w-5 md:h-6 md:w-6 text-green-500 mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Expert Advice</h4>
+                                <p class="text-gray-600 text-xs md:text-sm">Knowledgeable staff to help you choose</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="check-circle" class="h-5 w-5 md:h-6 md:w-6 text-green-500 mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Competitive Prices</h4>
+                                <p class="text-gray-600 text-xs md:text-sm">Best value for your money</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="check-circle" class="h-5 w-5 md:h-6 md:w-6 text-green-500 mr-3 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Wide Selection</h4>
+                                <p class="text-gray-600 text-xs md:text-sm">Everything you need under one roof</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-12 md:py-24 section-bg relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="text-center mb-12 md:mb-20">
+                <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black gradient-text mb-4 md:mb-6 leading-tight">Our Products</h2>
+                <div class="w-16 sm:w-20 md:w-24 h-1 bg-gradient-to-r from-blue-500 to-purple-600 mx-auto mb-4 md:mb-6 rounded-full"></div>
+                <p class="text-lg md:text-xl lg:text-2xl text-gray-700 max-w-3xl mx-auto leading-relaxed px-4">Discover our premium collection of grocery and daily essentials, carefully curated for your lifestyle</p>
+            </div>
+
+            <div class="responsive-grid">
+                <!-- Grocery -->
+                <button onclick="showCategory('grocery')" class="block group">
+                    <div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
+                        <div class="bg-gradient-to-br from-emerald-500 via-green-600 to-teal-700 p-6 md:p-10 text-center relative">
+                            <div class="pulse-ring"></div>
+                            <i data-feather="shopping-bag" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Grocery</h3>
+                            <div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+                        </div>
+                        <div class="p-4 md:p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Fresh produce, pantry staples, and everyday essentials</p>
+                            <div class="inline-flex items-center text-green-600 font-semibold group-hover:text-green-700 transition-colors text-sm md:text-base">
+                                Explore Collection
+                                <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Notebooks -->
+                <button onclick="showCategory('notebooks')" class="block group">
+                    <div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
+                        <div class="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 p-6 md:p-10 text-center relative">
+                            <div class="pulse-ring"></div>
+                            <i data-feather="book" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Notebooks</h3>
+                            <div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+                        </div>
+                        <div class="p-4 md:p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Premium stationery for students and professionals</p>
+                            <div class="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm md:text-base">
+                                Explore Collection
+                                <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Chips -->
+                <button onclick="showCategory('chips')" class="block group">
+                    <div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
+                        <div class="bg-gradient-to-br from-amber-500 via-orange-600 to-red-600 p-6 md:p-10 text-center relative">
+                            <div class="pulse-ring"></div>
+                            <i data-feather="package" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Chips</h3>
+                            <div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+                        </div>
+                        <div class="p-4 md:p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Crispy snacks and savory treats for every craving</p>
+                            <div class="inline-flex items-center text-orange-600 font-semibold group-hover:text-orange-700 transition-colors text-sm md:text-base">
+                                Explore Collection
+                                <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Biscuits -->
+                <button onclick="showCategory('biscuits')" class="block group">
+                    <div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
+                        <div class="bg-gradient-to-br from-pink-500 via-rose-600 to-red-700 p-6 md:p-10 text-center relative">
+                            <div class="pulse-ring"></div>
+                            <i data-feather="coffee" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Biscuits</h3>
+                            <div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+                        </div>
+                        <div class="p-4 md:p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Sweet treats and tea-time companions</p>
+                            <div class="inline-flex items-center text-pink-600 font-semibold group-hover:text-pink-700 transition-colors text-sm md:text-base">
+                                Explore Collection
+                                <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Flour -->
+                <button onclick="showCategory('flour')" class="block group">
+                    <div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
+                        <div class="bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 p-6 md:p-10 text-center relative">
+                            <div class="pulse-ring"></div>
+                            <i data-feather="layers" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Others</h3>
+                            <div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+                        </div>
+                        <div class="p-4 md:p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">High-quality flour for all your baking needs</p>
+                            <div class="inline-flex items-center text-purple-600 font-semibold group-hover:text-purple-700 transition-colors text-sm md:text-base">
+                                Explore Collection
+                                <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+
+                <!-- Personal Care -->
+                <button onclick="showCategory('personalcare')" class="block group">
+                    <div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
+                        <div class="bg-gradient-to-br from-cyan-500 via-teal-600 to-blue-700 p-6 md:p-10 text-center relative">
+                            <div class="pulse-ring"></div>
+                            <i data-feather="droplet" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
+                            <h3 class="text-xl md:text-2xl font-bold text-white mb-2">Personal Care</h3>
+                            <div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+                        </div>
+                        <div class="p-4 md:p-8 text-center">
+                            <p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Premium soaps, shampoos, and grooming essentials</p>
+                            <div class="inline-flex items-center text-cyan-600 font-semibold group-hover:text-cyan-700 transition-colors text-sm md:text-base">
+                                Explore Collection
+                                <i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+            </div>
+
+            <!-- Additional Features -->
+            <div class="mt-12 md:mt-16 text-center">
+                <div class="inline-flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-4 md:space-x-8 bg-white/60 backdrop-blur-lg rounded-full px-6 py-4 shadow-lg">
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="truck" class="h-5 w-5 text-green-600"></i>
+                        <span class="text-sm font-medium text-gray-700">Fast Delivery</span>
+                    </div>
+                    <div class="hidden sm:block w-px h-4 bg-gray-300"></div>
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="shield-check" class="h-5 w-5 text-blue-600"></i>
+                        <span class="text-sm font-medium text-gray-700">Quality Assured</span>
+                    </div>
+                    <div class="hidden sm:block w-px h-4 bg-gray-300"></div>
+                    <div class="flex items-center space-x-2">
+                        <i data-feather="heart" class="h-5 w-5 text-red-600"></i>
+                        <span class="text-sm font-medium text-gray-700">Customer Choice</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Product Categories Section (Hidden by default) -->
+    <section id="category-view" class="py-12 md:py-16 bg-gray-50 hidden">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Breadcrumb -->
+            <div class="breadcrumb">
+                <button onclick="showMainProducts()" class="text-blue-600 hover:text-blue-800 transition-colors">Products</button>
+                <i data-feather="chevron-right" class="h-4 w-4"></i>
+                <span id="current-category" class="font-medium text-gray-900"></span>
+            </div>
+
+            <!-- Category Header -->
+            <div class="text-center mb-8 md:mb-12">
+                <h2 id="category-title" class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4"></h2>
+                <p id="category-description" class="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto"></p>
+            </div>
+
+            <!-- Filter and Sort -->
+            <div class="flex flex-col sm:flex-row justify-between items-center mb-6 md:mb-8 gap-4">
+                <div class="flex flex-col sm:flex-row items-center space-y-2 sm:space-y-0 sm:space-x-4 w-full sm:w-auto">
+                    <select id="price-filter" class="border border-gray-300 rounded-lg px-4 py-2 bg-white w-full sm:w-auto">
+                        <option value="all">All Prices</option>
+                        <option value="low">Under ₹100</option>
+                        <option value="medium">₹100 - ₹500</option>
+                        <option value="high">Above ₹500</option>
+                    </select>
+                    <select id="sort-filter" class="border border-gray-300 rounded-lg px-4 py-2 bg-white w-full sm:w-auto">
+                        <option value="name">Sort by Name</option>
+                        <option value="price-low">Price: Low to High</option>
+                        <option value="price-high">Price: High to Low</option>
+                    </select>
+                </div>
+                <div class="text-sm text-gray-500">
+                    <span id="product-count">0</span> products found
+                </div>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="responsive-grid">
+                <!-- Products will be dynamically inserted here -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Shopping Cart -->
+    <div id="cart" class="fixed right-4 z-50" style="bottom: 18px;">
+        <button onclick="toggleCart()" class="bg-blue-600 text-white p-3 rounded-full shadow-lg hover:bg-blue-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+            <i data-feather="shopping-cart" class="h-6 w-6"></i>
+            <span id="cart-count" class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
+        </button>
+    </div>
+
+    <!-- Cart Sidebar -->
+    <div id="cart-sidebar" class="fixed top-0 right-0 h-full w-full sm:w-96 bg-white shadow-xl z-50 transform translate-x-full transition-transform duration-300">
+        <div class="p-4 md:p-6 h-full flex flex-col">
+            <div class="flex justify-between items-center mb-4 md:mb-6">
+                <h3 class="text-lg md:text-xl font-bold">Shopping Cart</h3>
+                <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600 p-2">
+                    <i data-feather="x" class="h-6 w-6"></i>
+                </button>
+            </div>
+            <div id="cart-items" class="space-y-4 mb-4 md:mb-6 flex-grow overflow-y-auto">
+                <!-- Cart items will be inserted here -->
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center text-lg font-bold mb-4">
+                    <span>Total: </span>
+                    <span id="cart-total">₹0</span>
+                </div>
+                <button class="w-full bg-green-600 text-white py-3 rounded-lg hover:bg-green-700 transition-colors min-h-[44px]">
+                    Proceed to Checkout
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-12 md:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Gallery</h2>
+                <p class="text-lg md:text-xl text-gray-600">Take a look inside our store and products</p>
+            </div>
+            <div class="responsive-grid">
+                <div class="bg-gradient-to-br from-blue-400 to-blue-600 rounded-lg h-48 sm:h-56 md:h-64 flex items-center justify-center card-hover cursor-pointer">
+                    <div class="text-center text-white">
+                        <i data-feather="image" class="h-12 w-12 md:h-16 md:w-16 mx-auto mb-3 md:mb-4"></i>
+                        <p class="text-base md:text-lg font-semibold">Store Front</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-green-400 to-green-600 rounded-lg h-48 sm:h-56 md:h-64 flex items-center justify-center card-hover cursor-pointer">
+                    <div class="text-center text-white">
+                        <i data-feather="image" class="h-12 w-12 md:h-16 md:w-16 mx-auto mb-3 md:mb-4"></i>
+                        <p class="text-base md:text-lg font-semibold">Pen Collection</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-purple-400 to-purple-600 rounded-lg h-48 sm:h-56 md:h-64 flex items-center justify-center card-hover cursor-pointer">
+                    <div class="text-center text-white">
+                        <i data-feather="image" class="h-12 w-12 md:h-16 md:w-16 mx-auto mb-3 md:mb-4"></i>
+                        <p class="text-base md:text-lg font-semibold">Art Section</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-pink-400 to-pink-600 rounded-lg h-48 sm:h-56 md:h-64 flex items-center justify-center card-hover cursor-pointer">
+                    <div class="text-center text-white">
+                        <i data-feather="image" class="h-12 w-12 md:h-16 md:w-16 mx-auto mb-3 md:mb-4"></i>
+                        <p class="text-base md:text-lg font-semibold">Notebooks Display</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-yellow-400 to-orange-600 rounded-lg h-48 sm:h-56 md:h-64 flex items-center justify-center card-hover cursor-pointer">
+                    <div class="text-center text-white">
+                        <i data-feather="image" class="h-12 w-12 md:h-16 md:w-16 mx-auto mb-3 md:mb-4"></i>
+                        <p class="text-base md:text-lg font-semibold">Office Supplies</p>
+                    </div>
+                </div>
+                <div class="bg-gradient-to-br from-teal-400 to-teal-600 rounded-lg h-48 sm:h-56 md:h-64 flex items-center justify-center card-hover cursor-pointer">
+                    <div class="text-center text-white">
+                        <i data-feather="image" class="h-12 w-12 md:h-16 md:w-16 mx-auto mb-3 md:mb-4"></i>
+                        <p class="text-base md:text-lg font-semibold">Interior View</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reviews Section -->
+    <section id="reviews" class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Customer Reviews</h2>
+                <p class="text-lg md:text-xl text-gray-600">What our customers say about us</p>
+            </div>
+            <div class="responsive-grid">
+                <!-- Review 1 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <div class="bg-indigo-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                            <i data-feather="user" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">Sarah Johnson</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">"Excellent quality products and outstanding customer service. I've been shopping here for years and they never disappoint. The staff is knowledgeable and always helps me find exactly what I need."</p>
+                </div>
+
+                <!-- Review 2 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <div class="bg-green-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                            <i data-feather="user" class="h-5 w-5 md:h-6 md:w-6 text-green-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">Michael Chen</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">"Best stationery shop in town! Their collection of fountain pens is amazing, and the prices are very competitive. I bought my Parker pen here and it's been working perfectly for 2 years."</p>
+                </div>
+
+                <!-- Review 3 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <div class="bg-pink-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                            <i data-feather="user" class="h-5 w-5 md:h-6 md:w-6 text-pink-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">Emily Davis</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 stroke-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">"Great selection of art supplies! As an art student, I appreciate the variety and quality they offer. The staff gave me excellent recommendations for my painting projects."</p>
+                </div>
+
+                <!-- Review 4 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <div class="bg-blue-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                            <i data-feather="user" class="h-5 w-5 md:h-6 md:w-6 text-blue-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">David Wilson</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">"Reliable and trustworthy business. I order office supplies in bulk for my company and they always deliver on time with consistent quality. Highly recommended!"</p>
+                </div>
+
+                <!-- Review 5 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <div class="bg-purple-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                            <i data-feather="user" class="h-5 w-5 md:h-6 md:w-6 text-purple-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">Lisa Thompson</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 stroke-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">"Perfect for students! They have everything I need for school at reasonable prices. The notebook quality is excellent and they last the entire semester."</p>
+                </div>
+
+                <!-- Review 6 -->
+                <div class="bg-white rounded-lg shadow-lg p-4 md:p-6 card-hover">
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <div class="bg-orange-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                            <i data-feather="user" class="h-5 w-5 md:h-6 md:w-6 text-orange-600"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900 text-sm md:text-base">Robert Brown</h4>
+                            <div class="flex text-yellow-400">
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                                <i data-feather="star" class="h-3 w-3 md:h-4 md:w-4 fill-current"></i>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 text-sm md:text-base">"Amazing customer service! When my expensive pen broke, they helped me get it repaired through the manufacturer's warranty. That's what I call going above and beyond!"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-12 md:py-20 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Contact Us</h2>
+                <p class="text-lg md:text-xl text-gray-600">Get in touch with our friendly team</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12">
+                <!-- Contact Form -->
+                <div class="bg-white rounded-lg shadow-lg p-6 md:p-8">
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Send us a Message</h3>
+                    <form class="space-y-4 md:space-y-6">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your Name">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                            <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="your@email.com">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Subject">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                            <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500" placeholder="Your message..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full bg-indigo-600 text-white px-6 py-3 rounded-lg hover:bg-indigo-700 transition-colors inline-flex items-center justify-center min-h-[44px]">
+                            <i data-feather="send" class="h-5 w-5 mr-2"></i>
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Get in Touch</h3>
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                                <i data-feather="map-pin" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Address</h4>
+                                <p class="text-gray-600 text-sm md:text-base">8P7J+2GW, Mohanpur, West Bengal 721152</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                                <i data-feather="phone" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Phone</h4>
+                                <p class="text-gray-600 text-sm md:text-base">(555) 123-4567</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                                <i data-feather="mail" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Email</h4>
+                                <p class="text-gray-600 text-sm md:text-base">info@papercraft.com</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <div class="bg-indigo-100 rounded-full p-2 md:p-3 w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mr-3 md:mr-4">
+                                <i data-feather="clock" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Business Hours</h4>
+                                <p class="text-gray-600 text-sm md:text-base">All day (7am-12pm <b>& </b> 4pm-9pm)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Social Links -->
+                    <div class="mt-6 md:mt-8">
+                        <h4 class="font-semibold text-gray-900 mb-3 md:mb-4">Follow Us</h4>
+                        <div class="flex space-x-3 md:space-x-4">
+                            <a href="#" class="bg-blue-600 text-white p-2 md:p-3 rounded-full hover:bg-blue-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+                                <i data-feather="facebook" class="h-4 w-4 md:h-5 md:w-5"></i>
+                            </a>
+                            <a href="#" class="bg-blue-400 text-white p-2 md:p-3 rounded-full hover:bg-blue-500 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+                                <i data-feather="twitter" class="h-4 w-4 md:h-5 md:w-5"></i>
+                            </a>
+                            <a href="#" class="bg-pink-600 text-white p-2 md:p-3 rounded-full hover:bg-pink-700 transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center">
+                                <i data-feather="instagram" class="h-4 w-4 md:h-5 md:w-5"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Location Section -->
+    <section id="location" class="py-12 md:py-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 md:mb-16">
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Visit Our Store</h2>
+                <p class="text-lg md:text-xl text-gray-600">Find us easily in the heart of downtown</p>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 md:gap-12 items-center">
+                <!-- Map Placeholder -->
+                <div class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d33146.909506214695!2d87.7097042622884!3d22.303852082431025!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a02b900162543f1%3A0x36ced60e46a5ab89!2sSrikrishna%20Variety%20Stores!5e0!3m2!1sen!2sin!4v1760036627496!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+
+                <!-- Location Details -->
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6">Easy to Find</h3>
+                    <div class="space-y-4 md:space-y-6">
+                        <div class="flex items-start">
+                            <i data-feather="navigation" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600 mr-3 md:mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Prime Location</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Located in the bustling downtown district, easily accessible by public transport and car.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="car" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600 mr-3 md:mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Parking Available</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Free parking available in front of the store and nearby parking garage.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="train" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600 mr-3 md:mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Public Transport</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Just 2 minutes walk from Central Metro Station and multiple bus stops nearby.</p>
+                            </div>
+                        </div>
+                        <div class="flex items-start">
+                            <i data-feather="coffee" class="h-5 w-5 md:h-6 md:w-6 text-indigo-600 mr-3 md:mr-4 mt-1"></i>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 text-sm md:text-base">Nearby Amenities</h4>
+                                <p class="text-gray-600 text-sm md:text-base">Surrounded by cafes, restaurants, and shopping centers for your convenience.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8 md:py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center mb-3 md:mb-4">
+                        <i data-feather="edit-3" class="h-6 w-6 md:h-8 md:w-8 text-indigo-400"></i>
+                        <span class="ml-2 text-lg md:text-xl font-bold">Srikrishna Variety Stores</span>
+                    </div>
+                    <p class="text-gray-300 mb-3 md:mb-4 text-sm md:text-base">Your trusted partner for premium stationery since 2007. Quality products, exceptional service.</p>
+                    <div class="flex space-x-3 md:space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-feather="facebook" class="h-4 w-4 md:h-5 md:w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-feather="twitter" class="h-4 w-4 md:h-5 md:w-5"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-white transition-colors">
+                            <i data-feather="instagram" class="h-4 w-4 md:h-5 md:w-5"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-base md:text-lg font-semibold mb-3 md:mb-4">Quick Links</h3>
+                    <ul class="space-y-1 md:space-y-2 text-gray-300 text-sm md:text-base">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="#products" class="hover:text-white transition-colors">Products</a></li>
+                        <li><a href="#gallery" class="hover:text-white transition-colors">Gallery</a></li>
+                        <li><a href="#reviews" class="hover:text-white transition-colors">Reviews</a></li>
+                    </ul>
+                </div>
+
+                <!-- Products -->
+                <div>
+                    <h3 class="text-base md:text-lg font-semibold mb-3 md:mb-4">Products</h3>
+                    <ul class="space-y-1 md:space-y-2 text-gray-300 text-sm md:text-base">
+                        <li><a href="#" class="hover:text-white transition-colors">Pens & Pencils</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Notebooks</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Art Supplies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Office Supplies</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Gift Items</a></li>
+                    </ul>
+                </div>
+
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-base md:text-lg font-semibold mb-3 md:mb-4">Contact Info</h3>
+                    <div class="space-y-1 md:space-y-2 text-gray-300 text-sm md:text-base">
+                        <p class="flex items-center">
+                            <i data-feather="map-pin" class="h-3 w-3 md:h-4 md:w-4 mr-2"></i>
+                            8P7J+2GW, Mohanpur, West Bengal 721152
+                        </p>
+                        <p class="flex items-center">
+                            <i data-feather="phone" class="h-3 w-3 md:h-4 md:w-4 mr-2"></i>
+                            (555) 123-4567
+                        </p>
+                        <p class="flex items-center">
+                            <i data-feather="mail" class="h-3 w-3 md:h-4 md:w-4 mr-2"></i>
+                            info@papercraft.com
+                        </p>
+                        <p class="flex items-center">
+                            <i data-feather="clock" class="h-3 w-3 md:h-4 md:w-4 mr-2"></i>
+                            Mon-Fri: 9AM-7PM
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-800 mt-6 md:mt-8 pt-6 md:pt-8 text-center text-gray-400 text-sm md:text-base">
+                <p>&copy; 2025 Srikrishna Variety Stores. All rights reserved. | Design by PaperCraft Team</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Feather Icons
+        feather.replace();
+
+        // Mobile Menu Toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Smooth Scrolling for Navigation Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                navbar.classList.add('shadow-lg');
+            } else {
+                navbar.classList.remove('shadow-lg');
+            }
+        });
+
+        // Add loading animation to buttons
+        document.querySelectorAll('button').forEach(button => {
+            button.addEventListener('click', function () {
+                if (this.type === 'submit') {
+                    const originalText = this.innerHTML;
+                    this.innerHTML = '<i data-feather="loader" class="h-5 w-5 mr-2 animate-spin"></i>Sending...';
+                    this.disabled = true;
+
+                    // Simulate form submission
+                    setTimeout(() => {
+                        this.innerHTML = '<i data-feather="check" class="h-5 w-5 mr-2"></i>Message Sent!';
+                        setTimeout(() => {
+                            this.innerHTML = originalText;
+                            this.disabled = false;
+                            feather.replace();
+                        }, 2000);
+                    }, 2000);
+                }
+                feather.replace();
+            });
+        });
+
+        // Gallery hover effect
+        document.querySelectorAll('#gallery .card-hover').forEach(item => {
+            item.addEventListener('mouseenter', function () {
+                this.style.transform = 'scale(1.05) translateY(-10px)';
+            });
+
+            item.addEventListener('mouseleave', function () {
+                this.style.transform = 'scale(1) translateY(0)';
+            });
+        });
+
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Apply fade-in animation to sections
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(section);
+        });
+
+        const products = {
+            grocery: [
+                { id: 1, name: "Gobindobhog Rice", price: 250, image: "https://cpimg.tistatic.com/6521182/b/4/gobindobhog-rice.jpg", description: "Premium quality Gobindobhog rice, 1kg pack" },
+                { id: 2, name: "Atta", price: 50, image: "https://baazwsh.com/cdn/shop/products/multigrain-atta-aashirvaad-baazwsh-10kg-312871.webp?v=1692897919", description: "Fresh ground whole wheat flour, 5kg" },
+                { id: 3, name: "Organic Honey", price: 320, image: "https://5.imimg.com/data5/UD/MB/MY-42635865/natural-honey-500x500.jpg", description: "Pure organic honey, 500g jar" },
+                { id: 4, name: "Mustard Oil", price: 150, image: "https://m.media-amazon.com/images/I/51dhZglj8LL._UF894,1000_QL80_.jpg", description: "Mustard oil, 1 litre" },
+                { id: 5, name: "Masala Tea", price: 120, image: "https://www.earth.com/assets/_next/image/?url=https%3A%2F%2Fcff2.earth.com%2Fuploads%2F2024%2F02%2F08140346%2Fdrinking-tea_every-day_delays-aging_mint-tea_1m-1400x850.jpg&w=1200&q=75", description: "Premium blend masala chai, 250g" },
+                { id: 6, name: "Fresh Onions", price: 45, image: "https://plus.unsplash.com/premium_photo-1700400119867-41aeda606042?q=80&w=687&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", description: "Fresh red onions, 1kg" },
+                { id: 7, name: "Potato", price: 60, image: "https://images.unsplash.com/photo-1596910547037-846b1980329f?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3Dw=300&h=200&fit=crop", description: "Fresh Potatoes, 1kg" },
+                { id: 8, name: "Sunflower Oil", price: 55, image: "https://i0.wp.com/bajarhaat.com/wp-content/uploads/2021/06/Mahakosh-Soyabean-Oil.webp?fit=720%2C720&ssl=1", description: "Fresh full cream milk, 1 litre" },
+                { id: 9, name: "Ginger", price: 55, image: "https://plus.unsplash.com/premium_photo-1670952897229-2bd661864858?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", description: "Fresh Ginger" },
+                { id: 10, name: "Garlic", price: 55, image: "https://images.unsplash.com/photo-1625229466998-42ee9c597290?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D", description: "Fresh Garlic" },
+                { id: 11, name: "Salt", price: 55, image: "https://media.istockphoto.com/id/466041394/photo/sea-salt.webp?a=1&b=1&s=612x612&w=0&k=20&c=3AFkstpZ_T1mAQKPLa4wBTf54vNo1uBTTJaGedbrIcQ=", description: "Salt" }
+            ],
+            notebooks: [
+                { id: 12, name: "Premium Notebook", price: 85, image: "https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?w=300&h=200&fit=crop", description: "A4 size ruled notebook, 200 pages" },
+                { id: 13, name: "Spiral Notebook", price: 65, image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=200&fit=crop", description: "Wire-bound spiral notebook, 150 pages" },
+                { id: 14, name: "Graph Paper Notebook", price: 75, image: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=300&h=200&fit=crop", description: "Graph paper for technical drawings" },
+                { id: 15, name: "Executive Diary", price: 250, image: "https://images.unsplash.com/photo-1517971129774-39b2c413669c?w=300&h=200&fit=crop", description: "Leather bound executive diary, 2024" },
+                { id: 16, name: "Student Pack", price: 180, image: "https://images.unsplash.com/photo-1456735190827-d1262f71b8a3?w=300&h=200&fit=crop", description: "Complete student notebook pack" },
+                { id: 17, name: "Art Sketchbook", price: 120, image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?w=300&h=200&fit=crop", description: "High-quality paper for sketching" }
+            ],
+            chips: [
+                { id: 18, name: "Lays", price: 5, image: "https://images.unsplash.com/photo-1688217170693-e821c6e18d72?w=1200&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8bGF5cyUyMGNoaXBzfGVufDB8fDB8fHww", description: "Lays" },
+                { id: 19, name: "Kurkure", price: 5, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdcU4N2O2Wd-y1N1NIryqokIMaqYWM-WlhAg&s", description: "Kurkure" },
+                { id: 20, name: "Bingo", price: 5, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQjtRO_0Q8OyCiKq4baPUyt9u9ZaDeeRmm-ug&s", description: "Bingo" },
+                { id: 21, name: "Make up box chips", price: 5, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT0Xx1C4tuuMNJa8L7OYyT1WaHKHRwGeIuV1g&s", description: "Make up box chips" },
+                { id: 22, name: "Crax", price: 5, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRsf7kG9UQsOpOkV-rzg9KaWc1si5887gbjQg&s", description: "Crax" },
+                { id: 23, name: "Moong Dal", price: 5, image: "https://5.imimg.com/data5/HD/KM/VW/SELLER-16591991/prabhuji-moong-dal-namkeen.JPG", description: "Moong Dal" }
+            ],
+            biscuits: [
+                { id: 24, name: "Happy Happy Biscuit", price: 5, image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmGb2VgyAdB4KdVaBvzzOfypFAPAyCBtfXiw&s", description: "Happy Happy Biscuit" },
+                { id: 25, name: "Good Day", price: 5, image: "https://www.glubery.com/public/uploads/1707726376Britannia_Good_Day_Cashew_Cookies_60_g_-_Pack_of_12.jpeg", description: "Good Day" },
+                { id: 26, name: "Cream Crackers", price: 40, image: "https://m.media-amazon.com/images/I/61M6vNVPnbL._UF894,1000_QL80_.jpg", description: "Light and crispy cream crackers" },
+                { id: 27, name: "Oreo", price: 10, image: "https://static-01.daraz.com.np/p/3646ceef2c2eafd942608e4c764e3bc2.jpg", description: "Oreo" },
+                { id: 28, name: "Cream Biscuit", price: 5, image: "https://www.biscuitpeople.com/media/cache/platform_full/1594212486_7caac5aa2fd88b0fcc3225fcac7fe731.jpg", description: "Cream Biscuit" },
+                { id: 29, name: "Tea Rusks", price: 25, image: "https://t4.ftcdn.net/jpg/02/88/95/81/360_F_288958116_FVa6o3f59vrQPkuNgHNku1IRdeL6nVBs.jpg", description: "Perfect tea-time rusks, 300g" }
+            ],
+            flour: [
+                { id: 30, name: "Flour", price: 38, image: "https://www.workshopplus.com/cdn/shop/products/wf_d867c985-b370-45be-aee4-0f21e20e9dcc_849x566.jpg?v=1750701114", description: "flour, 5kg" },
+                { id: 31, name: "Kaju", price: 1000, image: "https://sindhidryfruits.live/cdn/shop/products/8_99c5cac6-3617-4e90-8880-17c12ec506ea.jpg?v=1755872341", description: "Kaju" },
+                { id: 32, name: "Kismis", price: 75, image: "https://www.rajkamaltea.com/cdn/shop/files/brownraisins_1080x.jpg?v=1704890992", description: "Kismis" },
+                { id: 33, name: "Jeera", price: 65, image: "https://www.jivabhumi.com/cdn/shop/products/Jeera_886a3ec9-5965-47f8-8ef1-b1c7ce11a2be.jpg?v=1670225147&fit=crop", description: "Premium corn flour, 500g" },
+                { id: 34, name: "Semolina", price: 90, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300&h=200&fit=crop", description: "Coarse semolina (suji), 1kg" },
+                { id: 35, name: "Self-Rising Flour", price: 135, image: "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=300&h=200&fit=crop", description: "Self-rising flour for baking, 2kg" }
+            ],
+            personalcare: [
+                { id: 36, name: "Bathing Soap", price: 10, image: "https://www.bbassets.com/media/uploads/p/l/40007007_5-godrej-no1-bathing-soap-jasmine-milk-cream.jpgw=300&h=200&fit=crop", description: "Premium bathing soap, 100g" },
+                { id: 37, name: "Lifebuoy Soap", price: 10, image: "https://hibacart.com/cdn/shop/products/Lifebuoy-Total-Soap-1560751059-10035688-1-1.webp?w=300&h=200&fit=crop", description: "Lifebuoy antibacterial soap, 125g" },
+                { id: 38, name: "Dove Soap", price: 10 & 20, image: "https://i5.walmartimages.com/asr/d7f75230-99f8-4fc0-9799-08d1f1782aef_1.337e852ea495d1af8c55d4f78164eb2f.jpeg?w=300&h=200&fit=crop", description: "Dove moisturizing soap, 100g" },
+                { id: 39, name: "Shampoo", price: 2, image: "https://growstar.in/wp-content/uploads/2019/04/80-min-5.jpg?w=300&h=200&fit=crop", description: "Hair care shampoo, 200ml" },
+                { id: 40, name: "Clinic Plus Shampoo", price: 1, image: "https://sindirasupermarket.com/wp-content/uploads/2021/05/clini.jpg?w=300&h=200&fit=crop", description: "Clinic Plus shampoo, 175ml" },
+                { id: 41, name: "Sunsilk Shampoo", price: 180, image: "https://image1.jdomni.in/product/16052021/8D/62/22/0E8CC8BDDE4F7BE8B7CAD17DF0_1621172361669.png?w=300&h=200&fit=crop", description: "Sunsilk pro-v shampoo, 340ml" },
+                { id: 42, name: "Hair Oil", price: 85, image: "https://bharatbazaar.co.jp/wp-content/uploads/2024/09/Parachute-Coconut-Jasmine-Oil.webp?w=300&h=200&fit=crop", description: "Nourishing hair oil, 200ml" },
+                { id: 43, name: "Parachute Coconut Oil", price: 110, image: "https://sindirasupermarket.com/wp-content/uploads/2020/07/PARACHUTE-CO.png?w=300&h=200&fit=crop", description: "Pure coconut hair oil, 300ml" },
+                { id: 44, name: "Dabur Amla Hair Oil", price: 95, image: "https://ayurmarket.eu/21751-large_default/strengthening-hair-oil-amla-dabur-275-ml.jpg?w=300&h=200&fit=crop", description: "Dabur Amla hair oil, 275ml" },
+                { id: 45, name: "Face Wash", price: 145, image: "https://assets.myntassets.com/dpr_1.5,q_30,w_400,c_limit,fl_progressive/assets/images/4452074/2024/6/5/2c99ebe9-cf96-4fbf-a7a8-49ec4f9354e61717571765391-Ponds-Bright-Beauty-Spot-Less-Glow-Face-Wash-with-Vitamin-B3-1.jpg?w=300&h=200&fit=crop", description: "Gentle face wash, 100ml" },
+                { id: 46, name: "Himalaya Face Wash", price: 125, image: "https://www.clickoncare.com/cdn/shop/products/hmalaya-9087470751.jpg?w=300&h=200&fit=crop", description: "Himalaya neem face wash, 150ml" },
+                { id: 47, name: "Garnier Face Wash", price: 165, image: "https://meds.myupchar.com/113591/garnier-men-acnofight-face-wash-50ml-0.webp?w=300&h=200&fit=crop", description: "Garnier men face wash, 100g" }
+            ]
+        };
+        // Category information
+        const categoryInfo = {
+            grocery: {
+                title: "Grocery Essentials",
+                description: "Fresh produce, pantry staples, and kitchen essentials for your daily needs"
+            },
+            notebooks: {
+                title: "Notebooks & Stationery",
+                description: "Premium quality notebooks, diaries, and stationery for students and professionals"
+            },
+            chips: {
+                title: "Chips & Snacks",
+                description: "Crispy, crunchy snacks perfect for any time of the day"
+            },
+            biscuits: {
+                title: "Biscuits & Cookies",
+                description: "Sweet treats and tea-time favorites for every occasion"
+            },
+            flour: {
+                title: "Flour & Baking",
+                description: "High-quality flours and baking essentials for your culinary creations"
+            },
+            personalcare: {
+                title: "Personal Care",
+                description: "Premium soaps, shampoos, hair oils, and grooming essentials for your daily routine"
+            }
+        };
+
+        // Shopping cart
+        let cart = [];
+
+        // Initialize the app
+        function init() {
+            feather.replace();
+            updateCartDisplay();
+        }
+
+        // Show category products
+        function showCategory(category) {
+            document.getElementById('products').style.display = 'none';
+            document.getElementById('category-view').style.display = 'block';
+
+            const info = categoryInfo[category];
+            document.getElementById('category-title').textContent = info.title;
+            document.getElementById('category-description').textContent = info.description;
+            document.getElementById('current-category').textContent = info.title;
+
+            displayProducts(products[category]);
+            document.getElementById('category-view').classList.add('fade-in');
+        }
+
+        // Show main products view
+        function showMainProducts() {
+            document.getElementById('products').style.display = 'block';
+            document.getElementById('category-view').style.display = 'none';
+            feather.replace();
+        }
+
+        // Display products in grid
+        function displayProducts(productList) {
+            const grid = document.getElementById('products-grid');
+            document.getElementById('product-count').textContent = productList.length;
+
+            grid.innerHTML = productList.map(product => `
+                <div class="product-card">
+                    <div class="overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="product-image">
+                    </div>
+                    <div class="p-4 md:p-6">
+                        <h3 class="font-bold text-base md:text-lg text-gray-900 mb-2">${product.name}</h3>
+                        <p class="text-gray-600 text-sm mb-3 md:mb-4">${product.description}</p>
+                        <div class="flex items-center justify-between">
+                            <span class="price-tag">₹${product.price}</span>
+                            <button onclick="addToCart(${product.id})" class="add-to-cart-btn text-white px-3 md:px-4 py-2 rounded-lg flex items-center space-x-1 md:space-x-2 min-h-[44px]">
+                                <i data-feather="plus" class="h-3 w-3 md:h-4 md:w-4"></i>
+                                <span class="text-sm md:text-base">Add</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            feather.replace();
+        }
+
+        // Add product to cart
+        function addToCart(productId) {
+            // Find product in all categories
+            let product = null;
+            for (const category in products) {
+                product = products[category].find(p => p.id === productId);
+                if (product) break;
+            }
+
+            if (product) {
+                const existingItem = cart.find(item => item.id === productId);
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ ...product, quantity: 1 });
+                }
+                updateCartDisplay();
+                showNotification(`${product.name} added to cart!`);
+            }
+        }
+
+        // Remove item from cart
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartDisplay();
+        }
+
+        // Update cart quantity
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartDisplay();
+                }
+            }
+        }
+
+        // Update cart display
+        function updateCartDisplay() {
+            const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+            const cartTotal = cart.reduce((total, item) => total + (item.price * item.quantity), 0);
+
+            document.getElementById('cart-count').textContent = cartCount;
+            document.getElementById('cart-total').textContent = `₹${cartTotal}`;
+
+            const cartItems = document.getElementById('cart-items');
+            if (cart.length === 0) {
+                cartItems.innerHTML = '<p class="text-gray-500 text-center py-8">Your cart is empty</p>';
+            } else {
+                cartItems.innerHTML = cart.map(item => `
+                    <div class="flex items-center space-x-3 md:space-x-4 bg-gray-50 p-3 md:p-4 rounded-lg">
+                        <img src="${item.image}" alt="${item.name}" class="w-12 h-12 md:w-16 md:h-16 object-cover rounded">
+                        <div class="flex-1">
+                            <h4 class="font-medium text-gray-900 text-sm md:text-base">${item.name}</h4>
+                            <p class="text-xs md:text-sm text-gray-600">₹${item.price} each</p>
+                        </div>
+                        <div class="flex items-center space-x-1 md:space-x-2">
+                            <button onclick="updateQuantity(${item.id}, -1)" class="w-7 h-7 md:w-8 md:h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 min-h-[44px] min-w-[44px]">
+                                <i data-feather="minus" class="h-3 w-3 md:h-4 md:w-4"></i>
+                            </button>
+                            <span class="w-6 md:w-8 text-center text-sm md:text-base">${item.quantity}</span>
+                            <button onclick="updateQuantity(${item.id}, 1)" class="w-7 h-7 md:w-8 md:h-8 bg-gray-200 rounded-full flex items-center justify-center hover:bg-gray-300 min-h-[44px] min-w-[44px]">
+                                <i data-feather="plus" class="h-3 w-3 md:h-4 md:w-4"></i>
+                            </button>
+                        </div>
+                        <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 p-2">
+                            <i data-feather="trash-2" class="h-4 w-4"></i>
+                        </button>
+                    </div>
+                `).join('');
+            }
+
+            feather.replace();
+        }
+
+        // Toggle cart sidebar
+        function toggleCart() {
+            const sidebar = document.getElementById('cart-sidebar');
+            sidebar.classList.toggle('translate-x-full');
+        }
+
+        // Show notification
+        function showNotification(message) {
+            const notification = document.createElement('div');
+            notification.className = 'fixed top-4 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 md:px-6 py-2 md:py-3 rounded-lg shadow-lg z-50 text-sm md:text-base';
+            notification.textContent = message;
+            document.body.appendChild(notification);
+
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
+        }
+
+        // Filter and sort functionality
+        document.addEventListener('DOMContentLoaded', function () {
+            const priceFilter = document.getElementById('price-filter');
+            const sortFilter = document.getElementById('sort-filter');
+
+            if (priceFilter && sortFilter) {
+                priceFilter.addEventListener('change', applyFilters);
+                sortFilter.addEventListener('change', applyFilters);
+            }
+        });
+
+        function applyFilters() {
+            const priceFilter = document.getElementById('price-filter').value;
+            const sortFilter = document.getElementById('sort-filter').value;
+
+            // Get current category products
+            const currentCategory = document.getElementById('current-category').textContent.toLowerCase().split(' ')[0];
+            let filteredProducts = [...products[currentCategory]] || [];
+
+            // Apply price filter
+            if (priceFilter !== 'all') {
+                filteredProducts = filteredProducts.filter(product => {
+                    switch (priceFilter) {
+                        case 'low': return product.price < 100;
+                        case 'medium': return product.price >= 100 && product.price <= 500;
+                        case 'high': return product.price > 500;
+                        default: return true;
+                    }
+                });
+            }
+
+            // Apply sorting
+            switch (sortFilter) {
+                case 'name':
+                    filteredProducts.sort((a, b) => a.name.localeCompare(b.name));
+                    break;
+                case 'price-low':
+                    filteredProducts.sort((a, b) => a.price - b.price);
+                    break;
+                case 'price-high':
+                    filteredProducts.sort((a, b) => b.price - a.price);
+                    break;
+            }
+
+            displayProducts(filteredProducts);
+        }
+
+        // Initialize when DOM is loaded
+        document.addEventListener('DOMContentLoaded', init);
+    </script>
+</body>
+
+</html>
