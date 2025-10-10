@@ -7,6 +7,8 @@
 <title>Srikrishna Variety Stores - Premium Stationery & Grocery Shop</title>
 <script src="https://cdn.tailwindcss.com"></script>
 <script src="https://unpkg.com/feather-icons"></script>
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 <style>
 /* Base responsive styles */
 * {
@@ -359,6 +361,279 @@ background: #e5e7eb;
 color: #374151;
 transform: translateY(-1px);
 }
+
+/* Swiper Carousel Styles */
+.swiper {
+width: 100%;
+height: 500px;
+border-radius: 12px;
+overflow: hidden;
+box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.swiper-slide {
+display: flex;
+align-items: center;
+justify-content: center;
+background: #fff;
+}
+
+.swiper-slide img {
+display: block;
+width: 100%;
+height: 100%;
+object-fit: cover;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+color: white;
+background: rgba(0, 0, 0, 0.3);
+width: 50px;
+height: 50px;
+border-radius: 50%;
+transition: all 0.3s ease;
+}
+
+.swiper-button-next:hover,
+.swiper-button-prev:hover {
+background: rgba(0, 0, 0, 0.6);
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+font-size: 20px;
+font-weight: bold;
+}
+
+.swiper-pagination-bullet {
+background: white;
+opacity: 0.7;
+}
+
+.swiper-pagination-bullet-active {
+background: #3b82f6;
+opacity: 1;
+}
+
+/* Responsive Swiper */
+@media (max-width: 768px) {
+.swiper {
+height: 350px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+width: 40px;
+height: 40px;
+}
+}
+
+@media (max-width: 480px) {
+.swiper {
+height: 250px;
+}
+.swiper-button-next,
+.swiper-button-prev {
+width: 35px;
+height: 35px;
+}
+}
+
+/* NEW STYLES FOR IMPROVED CARDS AND FOUNDERS SECTION */
+
+/* Improved Product Cards */
+.improved-category-card {
+background: white;
+border-radius: 16px;
+overflow: hidden;
+transition: all 0.3s ease;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+border: 1px solid rgba(0, 0, 0, 0.05);
+height: 100%;
+display: flex;
+flex-direction: column;
+}
+
+.improved-category-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+}
+
+.improved-card-header {
+padding: 2rem 1.5rem;
+text-align: center;
+position: relative;
+overflow: hidden;
+}
+
+.improved-card-body {
+padding: 1.5rem;
+flex-grow: 1;
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+}
+
+.improved-card-icon {
+width: 80px;
+height: 80px;
+margin: 0 auto 1rem;
+border-radius: 50%;
+display: flex;
+align-items: center;
+justify-content: center;
+background: rgba(255, 255, 255, 0.2);
+backdrop-filter: blur(10px);
+}
+
+.improved-card-title {
+font-size: 1.5rem;
+font-weight: 700;
+margin-bottom: 0.5rem;
+color: white;
+}
+
+.improved-card-subtitle {
+font-size: 0.875rem;
+opacity: 0.9;
+color: white;
+margin-bottom: 1rem;
+}
+
+.improved-card-description {
+color: #6b7280;
+margin-bottom: 1.5rem;
+line-height: 1.5;
+}
+
+.improved-card-cta {
+display: inline-flex;
+align-items: center;
+justify-content: center;
+font-weight: 600;
+transition: all 0.3s ease;
+padding: 0.5rem 1rem;
+border-radius: 8px;
+background: rgba(0, 0, 0, 0.05);
+}
+
+.improved-card-cta:hover {
+background: rgba(0, 0, 0, 0.1);
+transform: translateX(4px);
+}
+
+/* Founders Section */
+.founders-section {
+background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.founder-card {
+background: white;
+border-radius: 16px;
+overflow: hidden;
+box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+transition: all 0.3s ease;
+height: 100%;
+display: flex;
+flex-direction: column;
+}
+
+.founder-card:hover {
+transform: translateY(-5px);
+box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+}
+
+.founder-image {
+width: 120px;
+height: 120px;
+border-radius: 50%;
+object-fit: cover;
+border: 4px solid white;
+box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+margin: 0 auto 1rem;
+}
+
+.founder-name {
+font-size: 1.25rem;
+font-weight: 700;
+color: #1f2937;
+margin-bottom: 0.25rem;
+}
+
+.founder-role {
+color: #6b7280;
+font-size: 0.875rem;
+margin-bottom: 1rem;
+}
+
+.founder-quote {
+font-style: italic;
+color: #4b5563;
+position: relative;
+padding: 0 1rem;
+}
+
+.founder-quote::before,
+.founder-quote::after {
+content: '"';
+font-size: 2rem;
+color: #d1d5db;
+position: absolute;
+}
+
+.founder-quote::before {
+top: -0.5rem;
+left: 0;
+}
+
+.founder-quote::after {
+bottom: -1.5rem;
+right: 0;
+}
+
+/* Responsive improvements for product cards */
+@media (max-width: 768px) {
+.improved-category-card {
+margin-bottom: 1rem;
+}
+
+.improved-card-header {
+padding: 1.5rem 1rem;
+}
+
+.improved-card-body {
+padding: 1rem;
+}
+
+.improved-card-icon {
+width: 60px;
+height: 60px;
+}
+
+.improved-card-title {
+font-size: 1.25rem;
+}
+}
+
+/* Enhanced product grid for category view */
+.enhanced-product-grid {
+display: grid;
+grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+gap: 1.5rem;
+}
+
+@media (max-width: 640px) {
+.enhanced-product-grid {
+grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+gap: 1rem;
+}
+}
+
+@media (max-width: 480px) {
+.enhanced-product-grid {
+grid-template-columns: 1fr;
+}
+}
 </style>
 </head>
 
@@ -375,6 +650,7 @@ transform: translateY(-1px);
 <a href="#home" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Home</a>
 <a href="#about" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">About</a>
 <a href="#products" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Products</a>
+<a href="#founders" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Founders</a>
 <a href="#gallery" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Gallery</a>
 <a href="#reviews" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Reviews</a>
 <a href="#contact" class="text-gray-900 hover:text-indigo-600 px-3 py-2 rounded-md text-sm font-medium transition-colors">Contact</a>
@@ -394,6 +670,7 @@ transform: translateY(-1px);
 <a href="#home" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Home</a>
 <a href="#about" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">About</a>
 <a href="#products" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Products</a>
+<a href="#founders" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Founders</a>
 <a href="#gallery" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Gallery</a>
 <a href="#reviews" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Reviews</a>
 <a href="#contact" class="block px-3 py-2 text-base font-medium text-gray-900 hover:text-indigo-600">Contact</a>
@@ -418,6 +695,49 @@ Shop Now
 Visit Store
 </button>
 </div>
+</div>
+</div>
+</section>
+
+<!-- Image Carousel Section -->
+<section id="carousel" class="py-12 md:py-20 bg-white">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12 md:mb-16">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Featured Products</h2>
+<p class="text-lg md:text-xl text-gray-600">Discover our premium collection of stationery and grocery items</p>
+</div>
+
+<!-- Swiper Carousel -->
+<div class="swiper mySwiper">
+<div class="swiper-wrapper">
+<!-- Slide 1 -->
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Premium Notebooks Collection" />
+</div>
+<!-- Slide 2 -->
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1581094794329-c8112a89af12?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Art Supplies" />
+</div>
+<!-- Slide 3 -->
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1607082348824-0a96f2a4b9da?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Grocery Items" />
+</div>
+<!-- Slide 4 -->
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1608198093002-ad4e005484ec?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Office Supplies" />
+</div>
+<!-- Slide 5 -->
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Writing Instruments" />
+</div>
+<!-- Slide 6 -->
+<div class="swiper-slide">
+<img src="https://images.unsplash.com/photo-1629196914375-9d6d5be9ad3c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Store Interior" />
+</div>
+</div>
+<div class="swiper-button-next"></div>
+<div class="swiper-button-prev"></div>
+<div class="swiper-pagination"></div>
 </div>
 </div>
 </section>
@@ -501,18 +821,19 @@ Visit Store
 <div class="responsive-grid">
 <!-- Grocery -->
 <button onclick="showCategory('grocery')" class="block group">
-<div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
-<div class="bg-gradient-to-br from-emerald-500 via-green-600 to-teal-700 p-6 md:p-10 text-center relative">
-<div class="pulse-ring"></div>
-<i data-feather="shopping-bag" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
-<h3 class="text-xl md:text-2xl font-bold text-white mb-2">Grocery</h3>
-<div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+<div class="improved-category-card">
+<div class="improved-card-header bg-gradient-to-br from-emerald-500 via-green-600 to-teal-700">
+<div class="improved-card-icon">
+<i data-feather="shopping-bag" class="h-8 w-8 text-white"></i>
 </div>
-<div class="p-4 md:p-8 text-center">
-<p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Fresh produce, pantry staples, and everyday essentials</p>
-<div class="inline-flex items-center text-green-600 font-semibold group-hover:text-green-700 transition-colors text-sm md:text-base">
+<h3 class="improved-card-title">Grocery</h3>
+<p class="improved-card-subtitle">Fresh produce & pantry staples</p>
+</div>
+<div class="improved-card-body">
+<p class="improved-card-description">Fresh produce, pantry staples, and everyday essentials for your kitchen and home.</p>
+<div class="improved-card-cta text-emerald-600">
 Explore Collection
-<i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+<i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
 </div>
 </div>
 </div>
@@ -520,18 +841,19 @@ Explore Collection
 
 <!-- Notebooks -->
 <button onclick="showCategory('notebooks')" class="block group">
-<div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
-<div class="bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700 p-6 md:p-10 text-center relative">
-<div class="pulse-ring"></div>
-<i data-feather="book" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
-<h3 class="text-xl md:text-2xl font-bold text-white mb-2">Notebooks</h3>
-<div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+<div class="improved-category-card">
+<div class="improved-card-header bg-gradient-to-br from-blue-500 via-indigo-600 to-purple-700">
+<div class="improved-card-icon">
+<i data-feather="book" class="h-8 w-8 text-white"></i>
 </div>
-<div class="p-4 md:p-8 text-center">
-<p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Premium stationery for students and professionals</p>
-<div class="inline-flex items-center text-blue-600 font-semibold group-hover:text-blue-700 transition-colors text-sm md:text-base">
+<h3 class="improved-card-title">Notebooks</h3>
+<p class="improved-card-subtitle">Premium stationery collection</p>
+</div>
+<div class="improved-card-body">
+<p class="improved-card-description">Premium quality notebooks, diaries, and stationery for students and professionals.</p>
+<div class="improved-card-cta text-blue-600">
 Explore Collection
-<i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+<i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
 </div>
 </div>
 </div>
@@ -539,18 +861,19 @@ Explore Collection
 
 <!-- Chips -->
 <button onclick="showCategory('chips')" class="block group">
-<div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
-<div class="bg-gradient-to-br from-amber-500 via-orange-600 to-red-600 p-6 md:p-10 text-center relative">
-<div class="pulse-ring"></div>
-<i data-feather="package" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
-<h3 class="text-xl md:text-2xl font-bold text-white mb-2">Chips</h3>
-<div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+<div class="improved-category-card">
+<div class="improved-card-header bg-gradient-to-br from-amber-500 via-orange-600 to-red-600">
+<div class="improved-card-icon">
+<i data-feather="package" class="h-8 w-8 text-white"></i>
 </div>
-<div class="p-4 md:p-8 text-center">
-<p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Crispy snacks and savory treats for every craving</p>
-<div class="inline-flex items-center text-orange-600 font-semibold group-hover:text-orange-700 transition-colors text-sm md:text-base">
+<h3 class="improved-card-title">Chips</h3>
+<p class="improved-card-subtitle">Crispy snacks & savory treats</p>
+</div>
+<div class="improved-card-body">
+<p class="improved-card-description">Crispy, crunchy snacks perfect for any time of the day. From classic flavors to unique varieties.</p>
+<div class="improved-card-cta text-orange-600">
 Explore Collection
-<i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+<i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
 </div>
 </div>
 </div>
@@ -558,37 +881,39 @@ Explore Collection
 
 <!-- Biscuits -->
 <button onclick="showCategory('biscuits')" class="block group">
-<div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
-<div class="bg-gradient-to-br from-pink-500 via-rose-600 to-red-700 p-6 md:p-10 text-center relative">
-<div class="pulse-ring"></div>
-<i data-feather="coffee" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
-<h3 class="text-xl md:text-2xl font-bold text-white mb-2">Biscuits</h3>
-<div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+<div class="improved-category-card">
+<div class="improved-card-header bg-gradient-to-br from-pink-500 via-rose-600 to-red-700">
+<div class="improved-card-icon">
+<i data-feather="coffee" class="h-8 w-8 text-white"></i>
 </div>
-<div class="p-4 md:p-8 text-center">
-<p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Sweet treats and tea-time companions</p>
-<div class="inline-flex items-center text-pink-600 font-semibold group-hover:text-pink-700 transition-colors text-sm md:text-base">
+<h3 class="improved-card-title">Biscuits</h3>
+<p class="improved-card-subtitle">Sweet treats for every occasion</p>
+</div>
+<div class="improved-card-body">
+<p class="improved-card-description">Sweet treats and tea-time favorites for every occasion. Perfect with your favorite beverage.</p>
+<div class="improved-card-cta text-pink-600">
 Explore Collection
-<i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+<i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
 </div>
 </div>
 </div>
 </button>
 
-<!-- Flour -->
+<!-- Others -->
 <button onclick="showCategory('flour')" class="block group">
-<div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
-<div class="bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700 p-6 md:p-10 text-center relative">
-<div class="pulse-ring"></div>
-<i data-feather="layers" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
-<h3 class="text-xl md:text-2xl font-bold text-white mb-2">Others</h3>
-<div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+<div class="improved-category-card">
+<div class="improved-card-header bg-gradient-to-br from-violet-500 via-purple-600 to-indigo-700">
+<div class="improved-card-icon">
+<i data-feather="layers" class="h-8 w-8 text-white"></i>
 </div>
-<div class="p-4 md:p-8 text-center">
-<p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">High-quality flour for all your baking needs</p>
-<div class="inline-flex items-center text-purple-600 font-semibold group-hover:text-purple-700 transition-colors text-sm md:text-base">
+<h3 class="improved-card-title">Others</h3>
+<p class="improved-card-subtitle">Essential kitchen supplies</p>
+</div>
+<div class="improved-card-body">
+<p class="improved-card-description">High-quality flour and other essential kitchen supplies for all your cooking and baking needs.</p>
+<div class="improved-card-cta text-purple-600">
 Explore Collection
-<i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+<i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
 </div>
 </div>
 </div>
@@ -596,18 +921,19 @@ Explore Collection
 
 <!-- Personal Care -->
 <button onclick="showCategory('personalcare')" class="block group">
-<div class="category-card rounded-2xl shadow-xl overflow-hidden card-hover glow-effect relative h-full">
-<div class="bg-gradient-to-br from-cyan-500 via-teal-600 to-blue-700 p-6 md:p-10 text-center relative">
-<div class="pulse-ring"></div>
-<i data-feather="droplet" class="h-12 w-12 md:h-16 md:w-16 text-white mx-auto mb-4 md:mb-6 icon-float"></i>
-<h3 class="text-xl md:text-2xl font-bold text-white mb-2">Personal Care</h3>
-<div class="w-10 md:w-12 h-0.5 bg-white/30 mx-auto"></div>
+<div class="improved-category-card">
+<div class="improved-card-header bg-gradient-to-br from-cyan-500 via-teal-600 to-blue-700">
+<div class="improved-card-icon">
+<i data-feather="droplet" class="h-8 w-8 text-white"></i>
 </div>
-<div class="p-4 md:p-8 text-center">
-<p class="text-gray-600 leading-relaxed mb-3 md:mb-4 text-sm md:text-base">Premium soaps, shampoos, and grooming essentials</p>
-<div class="inline-flex items-center text-cyan-600 font-semibold group-hover:text-cyan-700 transition-colors text-sm md:text-base">
+<h3 class="improved-card-title">Personal Care</h3>
+<p class="improved-card-subtitle">Grooming & hygiene essentials</p>
+</div>
+<div class="improved-card-body">
+<p class="improved-card-description">Premium soaps, shampoos, hair oils, and grooming essentials for your daily routine.</p>
+<div class="improved-card-cta text-cyan-600">
 Explore Collection
-<i data-feather="arrow-right" class="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform"></i>
+<i data-feather="arrow-right" class="ml-2 h-4 w-4"></i>
 </div>
 </div>
 </div>
@@ -631,6 +957,41 @@ Explore Collection
 <i data-feather="heart" class="h-5 w-5 text-red-600"></i>
 <span class="text-sm font-medium text-gray-700">Customer Choice</span>
 </div>
+</div>
+</div>
+</div>
+</section>
+
+<!-- Founders Section -->
+<section id="founders" class="py-12 md:py-20 founders-section">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12 md:mb-16">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Founders</h2>
+<p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">The passionate individuals behind Srikrishna Variety Stores</p>
+</div>
+<div class="responsive-grid">
+<!-- Founder 1 -->
+<div class="founder-card p-6 md:p-8 text-center">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Founder 1" class="founder-image">
+<h3 class="founder-name">Rajesh Kumar</h3>
+<p class="founder-role">Founder & CEO</p>
+<p class="founder-quote">"Our vision has always been to provide quality products with exceptional service. Every customer who walks through our doors becomes part of our extended family."</p>
+</div>
+
+<!-- Founder 2 -->
+<div class="founder-card p-6 md:p-8 text-center">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Founder 2" class="founder-image">
+<h3 class="founder-name">Anita Sharma</h3>
+<p class="founder-role">Co-Founder & Operations Head</p>
+<p class="founder-quote">"We believe in building relationships, not just transactions. Our team works tirelessly to ensure every customer leaves with a smile."</p>
+</div>
+
+<!-- Founder 3 -->
+<div class="founder-card p-6 md:p-8 text-center">
+<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Founder 3" class="founder-image">
+<h3 class="founder-name">Priya Patel</h3>
+<p class="founder-role">Product Manager</p>
+<p class="founder-quote">"We carefully curate every product in our store to ensure quality and value. Our customers deserve nothing but the best."</p>
 </div>
 </div>
 </div>
@@ -676,7 +1037,7 @@ Back to Products
 </div>
 
 <!-- Products Grid -->
-<div id="products-grid" class="responsive-grid">
+<div id="products-grid" class="enhanced-product-grid">
 <!-- Products will be dynamically inserted here -->
 </div>
 </div>
@@ -1072,6 +1433,7 @@ Send Message
 <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
 <li><a href="#about" class="hover:text-white transition-colors">About Us</a></li>
 <li><a href="#products" class="hover:text-white transition-colors">Products</a></li>
+<li><a href="#founders" class="hover:text-white transition-colors">Founders</a></li>
 <li><a href="#gallery" class="hover:text-white transition-colors">Gallery</a></li>
 <li><a href="#reviews" class="hover:text-white transition-colors">Reviews</a></li>
 </ul>
@@ -1119,7 +1481,31 @@ Mon-Fri: 9AM-7PM
 </div>
 </footer>
 
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
 <script>
+// Initialize Swiper
+var swiper = new Swiper(".mySwiper", {
+  spaceBetween: 30,
+  centeredSlides: true,
+  autoplay: {
+    delay: 4000,
+    disableOnInteraction: false,
+  },
+  pagination: {
+    el: ".swiper-pagination",
+    clickable: true,
+  },
+  navigation: {
+    nextEl: ".swiper-button-next",
+    prevEl: ".swiper-button-prev",
+  },
+  loop: true,
+  effect: 'slide',
+  speed: 800,
+});
+
 // Initialize Feather Icons
 feather.replace();
 
