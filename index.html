@@ -634,6 +634,22 @@ gap: 1rem;
 grid-template-columns: 1fr;
 }
 }
+
+/* FIX: Ensure proper section transitions */
+#category-view {
+position: relative;
+z-index: 1;
+}
+
+#products {
+position: relative;
+z-index: 2;
+}
+
+/* FIX: Smooth section transitions */
+.section-transition {
+transition: opacity 0.3s ease, transform 0.3s ease;
+}
 </style>
 </head>
 
@@ -962,43 +978,8 @@ Explore Collection
 </div>
 </section>
 
-<!-- Founders Section -->
-<section id="founders" class="py-12 md:py-20 founders-section">
-<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-<div class="text-center mb-12 md:mb-16">
-<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Founders</h2>
-<p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">The passionate individuals behind Srikrishna Variety Stores</p>
-</div>
-<div class="responsive-grid">
-<!-- Founder 1 -->
-<div class="founder-card p-6 md:p-8 text-center">
-<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Founder 1" class="founder-image">
-<h3 class="founder-name">Rajesh Kumar</h3>
-<p class="founder-role">Founder & CEO</p>
-<p class="founder-quote">"Our vision has always been to provide quality products with exceptional service. Every customer who walks through our doors becomes part of our extended family."</p>
-</div>
-
-<!-- Founder 2 -->
-<div class="founder-card p-6 md:p-8 text-center">
-<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Founder 2" class="founder-image">
-<h3 class="founder-name">Anita Sharma</h3>
-<p class="founder-role">Co-Founder & Operations Head</p>
-<p class="founder-quote">"We believe in building relationships, not just transactions. Our team works tirelessly to ensure every customer leaves with a smile."</p>
-</div>
-
-<!-- Founder 3 -->
-<div class="founder-card p-6 md:p-8 text-center">
-<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Founder 3" class="founder-image">
-<h3 class="founder-name">Priya Patel</h3>
-<p class="founder-role">Product Manager</p>
-<p class="founder-quote">"We carefully curate every product in our store to ensure quality and value. Our customers deserve nothing but the best."</p>
-</div>
-</div>
-</div>
-</section>
-
 <!-- Product Categories Section (Hidden by default) -->
-<section id="category-view" class="py-12 md:py-16 bg-gray-50 hidden">
+<section id="category-view" class="py-12 md:py-16 bg-gray-50 hidden section-transition">
 <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 <!-- Breadcrumb with Back Button -->
 <div class="breadcrumb">
@@ -1039,6 +1020,41 @@ Back to Products
 <!-- Products Grid -->
 <div id="products-grid" class="enhanced-product-grid">
 <!-- Products will be dynamically inserted here -->
+</div>
+</div>
+</section>
+
+<!-- Founders Section -->
+<section id="founders" class="py-12 md:py-20 founders-section">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-12 md:mb-16">
+<h2 class="text-2xl sm:text-3xl md:text-4xl font-bold text-gray-900 mb-4">Meet Our Founders</h2>
+<p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">The passionate individuals behind Srikrishna Variety Stores</p>
+</div>
+<div class="responsive-grid">
+<!-- Founder 1 -->
+<div class="founder-card p-6 md:p-8 text-center">
+<img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=774&q=80" alt="Founder 1" class="founder-image">
+<h3 class="founder-name">Rajesh Kumar</h3>
+<p class="founder-role">Founder & CEO</p>
+<p class="founder-quote">"Our vision has always been to provide quality products with exceptional service. Every customer who walks through our doors becomes part of our extended family."</p>
+</div>
+
+<!-- Founder 2 -->
+<div class="founder-card p-6 md:p-8 text-center">
+<img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1170&q=80" alt="Founder 2" class="founder-image">
+<h3 class="founder-name">Anita Sharma</h3>
+<p class="founder-role">Co-Founder & Operations Head</p>
+<p class="founder-quote">"We believe in building relationships, not just transactions. Our team works tirelessly to ensure every customer leaves with a smile."</p>
+</div>
+
+<!-- Founder 3 -->
+<div class="founder-card p-6 md:p-8 text-center">
+<img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=761&q=80" alt="Founder 3" class="founder-image">
+<h3 class="founder-name">Priya Patel</h3>
+<p class="founder-role">Product Manager</p>
+<p class="founder-quote">"We carefully curate every product in our store to ensure quality and value. Our customers deserve nothing but the best."</p>
+</div>
 </div>
 </div>
 </section>
